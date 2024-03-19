@@ -25,6 +25,11 @@ function getCurrentDateTimeString() {
 // files to be stored
 const fileStore = path.join(__dirname, "/textFiles/");
 
+// Create the textFiles directory if it doesn't exist
+if (!fs.existsSync(fileStore)) {
+  fs.mkdirSync(fileStore, { recursive: true });
+}
+
 // Route to create a new file
 app.post("/createFile", (req, res) => {
   // Get the current date and time as a string
@@ -49,11 +54,11 @@ const apiDoc = "https://documenter.getpostman.com/view/19026522/2sA2xpTVAP";
 
 // home url
 app.get("/", function (req, res) {
-    res.setHeader('Content-Type', 'text/html');
-  res.send(`Hi! This is a sample node file system with <a href="${apiDoc}" target = "_blank">API documentation</a>`);
+  res.setHeader("Content-Type", "text/html");
+  res.send(
+    `Hi! This is a sample node file system with <a href="${apiDoc}" target = "_blank">API documentation</a>`
+  );
 });
-
-
 
 // Route to get a list of all text files
 app.get("/files", (request, response) => {
