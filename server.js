@@ -49,6 +49,7 @@ const apiDoc = "https://documenter.getpostman.com/view/19026522/2sA2xpTVAP";
 
 // home url
 app.get("/", function (req, res) {
+    res.setHeader('Content-Type', 'text/html');
   res.send(`Hi! This is a sample node file system with <a href="${apiDoc}" target = "_blank">API documentation</a>`);
 });
 
